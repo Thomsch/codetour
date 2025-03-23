@@ -276,7 +276,7 @@ class CodeTour:
         full_html_content = html_header + "\n".join(html_blocks) + html_footer
 
         # Write the HTML content to a file
-        with open("code_tour.html", "w") as file:
+        with open("demo/code_tour.html", "w") as file:
             file.write(full_html_content)
 
 
