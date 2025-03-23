@@ -1,0 +1,346 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Code Tour</title>
+            <style>
+            body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: row;
+            overflow-x: hidden;
+            }
+            .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            }
+            .sidebar h2 {
+            font-size: 0.9em;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-left: 10px;
+            }
+            .sidebar-change-meta {
+            font-size: 0.7em;
+            color: #555;
+            }
+            .content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
+            }
+            .tile {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            .description {
+            font-weight: bold;
+            margin-bottom: 5px;
+            }
+            .metadata {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+            }
+            .code-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            }
+            .code-block button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            }
+            .code-block button:hover {
+            background-color: #0056b3;
+            }
+            .code-block pre {
+            margin-top: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            }
+            .toc {
+            list-style: none;
+            padding: 0;
+            padding-left: 10px;
+            }
+            .toc li {
+            margin: 5px 0;
+            padding-left: 10px;
+            border-radius: 3px;
+            display: block;
+            }
+            .toc a {
+            text-decoration: none;
+            padding: 5px;
+            }
+            .toc li:hover {
+            background-color: #e9ecef;
+            }
+            </style>
+        </head>
+        <body>
+        <div class="sidebar">
+            <h2>Changes</h2>
+            <ul class="toc">
+        <li><a href="#change-0">my-app/.eslintrc.json</a> <span class="sidebar-change-meta"> 17 changes </span></li>
+<li><a href="#change-1">my-app/.gitignore</a> <span class="sidebar-change-meta"> 93 changes </span></li>
+<li><a href="#change-2">my-app/forge.config.ts</a> <span class="sidebar-change-meta"> 67 changes </span></li>
+<li><a href="#change-3">my-app/forge.env.d.ts</a> <span class="sidebar-change-meta"> 2 changes </span></li>
+            </ul>
+        </div>
+        <div class="content">
+        <h1>Code Tour</h1>
+        <p><strong>Commit Message:</strong> Initial typescript + vite</p>
+        <p><strong>Commit Hash:</strong> 68eda9c666462d1aa7d36ae134c76ad8e621fe2d</p>
+        <p><strong>Number of Files Changed:</strong> 15</p>
+        
+                <div class="tile" id="change-0">
+                    <details open>
+                    <summary>
+                        Adds a configuration file for ESLint, specifying the environments in which the code will run (browser, ES6, and Node.js). It extends several ESLint configurations to enforce coding standards and best practices, particularly for TypeScript and Electron projects, and uses the TypeScript ESLint parser to handle TypeScript syntax.
+                        <div class="metadata">
+                            <p>my-app/.eslintrc.json: 17 lines updated</p>
+                        </div>
+                    </summary>
+                    <pre>@@ -0,0 +1,16 @@
++{
++  &quot;env&quot;: {
++    &quot;browser&quot;: true,
++    &quot;es6&quot;: true,
++    &quot;node&quot;: true
++  },
++  &quot;extends&quot;: [
++    &quot;eslint:recommended&quot;,
++    &quot;plugin:@typescript-eslint/eslint-recommended&quot;,
++    &quot;plugin:@typescript-eslint/recommended&quot;,
++    &quot;plugin:import/recommended&quot;,
++    &quot;plugin:import/electron&quot;,
++    &quot;plugin:import/typescript&quot;
++  ],
++  &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;
++}</pre>
+                    </details>
+                </div>
+                
+
+                <div class="tile" id="change-1">
+                    <details >
+                    <summary>
+                        Adds a .gitignore file to specify which files and directories should be ignored by Git, preventing them from being tracked or committed to the repository. This is done to avoid committing unnecessary or sensitive files, such as logs, runtime data, dependency directories, and build outputs, which can clutter the repository and potentially expose sensitive information.
+                        <div class="metadata">
+                            <p>my-app/.gitignore: 93 lines updated</p>
+                        </div>
+                    </summary>
+                    <pre>@@ -0,0 +1,92 @@
++# Logs
++logs
++*.log
++npm-debug.log*
++yarn-debug.log*
++yarn-error.log*
++lerna-debug.log*
++
++# Diagnostic reports (https://nodejs.org/api/report.html)
++report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
++
++# Runtime data
++pids
++*.pid
++*.seed
++*.pid.lock
++.DS_Store
++
++# Directory for instrumented libs generated by jscoverage/JSCover
++lib-cov
++
++# Coverage directory used by tools like istanbul
++coverage
++*.lcov
++
++# nyc test coverage
++.nyc_output
++
++# node-waf configuration
++.lock-wscript
++
++# Compiled binary addons (https://nodejs.org/api/addons.html)
++build/Release
++
++# Dependency directories
++node_modules/
++jspm_packages/
++
++# TypeScript v1 declaration files
++typings/
++
++# TypeScript cache
++*.tsbuildinfo
++
++# Optional npm cache directory
++.npm
++
++# Optional eslint cache
++.eslintcache
++
++# Optional REPL history
++.node_repl_history
++
++# Output of &#x27;npm pack&#x27;
++*.tgz
++
++# Yarn Integrity file
++.yarn-integrity
++
++# dotenv environment variables file
++.env
++.env.test
++
++# parcel-bundler cache (https://parceljs.org/)
++.cache
++
++# next.js build output
++.next
++
++# nuxt.js build output
++.nuxt
++
++# vuepress build output
++.vuepress/dist
++
++# Serverless directories
++.serverless/
++
++# FuseBox cache
++.fusebox/
++
++# DynamoDB Local files
++.dynamodb/
++
++# Webpack
++.webpack/
++
++# Vite
++.vite/
++
++# Electron-Forge
++out/</pre>
+                    </details>
+                </div>
+                
+
+                <div class="tile" id="change-2">
+                    <details >
+                    <summary>
+                        Adds a configuration file for an Electron application using Electron Forge, specifying various makers for different platforms, plugins for building with Vite, and fuses for security settings, along with a publisher for GitHub. The configuration aims to streamline the build process, enhance security, and automate the publishing of the application.
+                        <div class="metadata">
+                            <p>my-app/forge.config.ts: 67 lines updated</p>
+                        </div>
+                    </summary>
+                    <pre>@@ -0,0 +1,66 @@
++import type { ForgeConfig } from &#x27;@electron-forge/shared-types&#x27;;
++import { MakerSquirrel } from &#x27;@electron-forge/maker-squirrel&#x27;;
++import { MakerZIP } from &#x27;@electron-forge/maker-zip&#x27;;
++import { MakerDeb } from &#x27;@electron-forge/maker-deb&#x27;;
++import { MakerRpm } from &#x27;@electron-forge/maker-rpm&#x27;;
++import { VitePlugin } from &#x27;@electron-forge/plugin-vite&#x27;;
++import { FusesPlugin } from &#x27;@electron-forge/plugin-fuses&#x27;;
++import { FuseV1Options, FuseVersion } from &#x27;@electron/fuses&#x27;;
++
++const config: ForgeConfig = {
++  packagerConfig: {
++    asar: true,
++  },
++  rebuildConfig: {},
++  makers: [new MakerSquirrel({}), new MakerZIP({}, [&#x27;darwin&#x27;]), new MakerRpm({}), new MakerDeb({})],
++  plugins: [
++    new VitePlugin({
++      // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
++      // If you are familiar with Vite configuration, it will look really familiar.
++      build: [
++        {
++          // `entry` is just an alias for `build.lib.entry` in the corresponding file of `config`.
++          entry: &#x27;src/main.ts&#x27;,
++          config: &#x27;vite.main.config.ts&#x27;,
++          target: &#x27;main&#x27;,
++        },
++        {
++          entry: &#x27;src/preload.ts&#x27;,
++          config: &#x27;vite.preload.config.ts&#x27;,
++          target: &#x27;preload&#x27;,
++        },
++      ],
++      renderer: [
++        {
++          name: &#x27;main_window&#x27;,
++          config: &#x27;vite.renderer.config.ts&#x27;,
++        },
++      ],
++    }),
++    // Fuses are used to enable/disable various Electron functionality
++    // at package time, before code signing the application
++    new FusesPlugin({
++      version: FuseVersion.V1,
++      [FuseV1Options.RunAsNode]: false,
++      [FuseV1Options.EnableCookieEncryption]: true,
++      [FuseV1Options.EnableNodeOptionsEnvironmentVariable]: false,
++      [FuseV1Options.EnableNodeCliInspectArguments]: false,
++      [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
++      [FuseV1Options.OnlyLoadAppFromAsar]: true,
++    }),
++  ],
++  publishers: [
++    {
++      name: &#x27;@electron-forge/publisher-github&#x27;,
++      config: {
++        repository: {
++          owner: &#x27;thomsch&#x27;,
++          name: &#x27;pause&#x27;,
++        },
++        prerelease: true
++      }
++    }
++  ]
++};
++
++export default config;</pre>
+                    </details>
+                </div>
+                
+
+                <div class="tile" id="change-3">
+                    <details open>
+                    <summary>
+                        Adds a TypeScript reference directive to include type definitions from the `@electron-forge/plugin-vite` package, enabling IntelliSense and type checking for the Electron Forge Vite environment.
+                        <div class="metadata">
+                            <p>my-app/forge.env.d.ts: 2 lines updated</p>
+                        </div>
+                    </summary>
+                    <pre>@@ -0,0 +1,1 @@
++/// &lt;reference types=&quot;@electron-forge/plugin-vite/forge-vite-env&quot; /&gt;</pre>
+                    </details>
+                </div>
+                
+        </div>
+        </body>
+        </html>
+        

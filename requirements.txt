@@ -1,2 +1,6 @@
 # Add any dependencies here
 pytest
+GitPython
+unidiff
+mistralai
+python-dotenv
